@@ -1,0 +1,118 @@
+//
+//  ImageView.swift
+//  Instories
+//
+//  Created by Vladyslav Yakovlev on 19.08.2018.
+//  Copyright © 2018 Vladyslav Yakovlev. All rights reserved.
+//
+
+import UIKit
+
+class ImageView: UIView {
+    
+    var image: UIImage? {
+        willSet {
+            guard let image = newValue else {
+                layer.contents = nil
+                return
+            }
+            
+            if image.size.width <= bounds.width, image.size.height <= bounds.height {
+                layer.contents = image.cgImage
+            } else {
+                drawImage(image)
+            }
+        }
+    }
+    
+    override var contentMode: UIView.ContentMode {
+        didSet {
+            switch contentMode {
+            case .center:
+                layer.contentsGravity = CALayerContentsGravity.center
+            case .scaleToFill :
+                layer.contentsGravity = CALayerContentsGravity.resize
+            default:
+                layer.contentsGravity = CALayerContentsGravity.resizeAspectFill
+            }
+        }
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        contentMode = .center
+        layer.disableAnimation()
+        layer.contentsScale = UIScreen.main.scale
+        layer.drawsAsynchronously = true
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if let currentImage = image {
+            image = currentImage
+        }
+    }
+    
+    private func drawImage(_ image: UIImage) {
+        let width = bounds.width*UIScreen.main.scale
+        let height = bounds.height*UIScreen.main.scale
+        
+        if width == 0 || height == 0 {
+            return
+        }
+        
+        let rect = CGRect(x: 0, y: 0, width: width, height: height)
+        
+        DispatchQueue.global(qos: .userInteractive).async {
+            
+            let context = CGContext(data: nil, width: Int(width), height: Int(height),
+                                    bitsPerComponent: 8, bytesPerRow: Int(width)*4, space: CGColorSpaceCreateDeviceRGB(),
+                                    bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
+            
+            context.draw(image.cgImage!, in: rect)
+            
+            let decodedImage = context.makeImage()!
+            
+            DispatchQueue.main.async {
+                self.layer.contents = decodedImage
+            }
+        }
+    }
+    
+    func drawImage(_ image: UIImage?, finishHandler: @escaping () -> (Bool)) {
+        guard let image = image else {
+            layer.contents = nil
+            return
+        }
+        let width = bounds.width*UIScreen.main.scale
+        let height = bounds.height*UIScreen.main.scale
+        
+        if width == 0 || height == 0 {
+            return
+        }
+        
+        let rect = CGRect(x: 0, y: 0, width: width, height: height)
+        
+        DispatchQueue.global(qos: .userInteractive).async {
+            
+            let context = CGContext(data: nil, width: Int(width), height: Int(height),
+                                    bitsPerComponent: 8, bytesPerRow: Int(width)*4, space: CGColorSpaceCreateDeviceRGB(),
+                                    bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
+            
+            context.draw(image.cgImage!, in: rect)
+            
+            let decodedImage = context.makeImage()!
+            
+            DispatchQueue.main.async {
+                let finish = finishHandler()
+                guard finish else { return }
+                self.layer.contents = decodedImage
+            }
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+

@@ -9,13 +9,25 @@
 import UIKit
 
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    private let transitionManager = NavigationTransitionManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let mainNC = UINavigationController(rootViewController: MainVC())
+        mainNC.isNavigationBarHidden = true
+        mainNC.delegate = transitionManager
+        
+        window = UIWindow()
+        window?.rootViewController = mainNC
+        window?.makeKeyAndVisible()
+        
+        RateAppService.incrementAppOpenedCount()
+        RateAppService.checkAndAskForReview()
+        
         return true
     }
 
@@ -40,7 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
 
 }
 
