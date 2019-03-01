@@ -8,39 +8,20 @@
 
 import UIKit
 
-class ImageView: UIView {
+final class ImageView: UIView {
     
     var image: UIImage? {
-        willSet {
-            guard let image = newValue else {
-                layer.contents = nil
-                return
-            }
-            
-            if image.size.width <= bounds.width, image.size.height <= bounds.height {
-                layer.contents = image.cgImage
-            } else {
-                drawImage(image)
-            }
+        didSet {
+            drawImage(image)
         }
     }
     
-    override var contentMode: UIView.ContentMode {
-        didSet {
-            switch contentMode {
-            case .center:
-                layer.contentsGravity = CALayerContentsGravity.center
-            case .scaleToFill :
-                layer.contentsGravity = CALayerContentsGravity.resize
-            default:
-                layer.contentsGravity = CALayerContentsGravity.resizeAspectFill
-            }
-        }
-    }
+    private let taskQueue = DispatchQueue(label: "com.wave.imageView", qos: .userInitiated, attributes: .concurrent)
+    
+    private var currentTask = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentMode = .center
         layer.disableAnimation()
         layer.contentsScale = UIScreen.main.scale
         layer.drawsAsynchronously = true
@@ -49,41 +30,19 @@ class ImageView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         if let currentImage = image {
-            image = currentImage
+            drawImage(currentImage)
         }
     }
     
-    private func drawImage(_ image: UIImage) {
-        let width = bounds.width*UIScreen.main.scale
-        let height = bounds.height*UIScreen.main.scale
+    private func drawImage(_ image: UIImage?) {
+        currentTask += 1
+        let task = currentTask
         
-        if width == 0 || height == 0 {
-            return
-        }
-        
-        let rect = CGRect(x: 0, y: 0, width: width, height: height)
-        
-        DispatchQueue.global(qos: .userInteractive).async {
-            
-            let context = CGContext(data: nil, width: Int(width), height: Int(height),
-                                    bitsPerComponent: 8, bytesPerRow: Int(width)*4, space: CGColorSpaceCreateDeviceRGB(),
-                                    bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
-            
-            context.draw(image.cgImage!, in: rect)
-            
-            let decodedImage = context.makeImage()!
-            
-            DispatchQueue.main.async {
-                self.layer.contents = decodedImage
-            }
-        }
-    }
-    
-    func drawImage(_ image: UIImage?, finishHandler: @escaping () -> (Bool)) {
         guard let image = image else {
             layer.contents = nil
             return
         }
+        
         let width = bounds.width*UIScreen.main.scale
         let height = bounds.height*UIScreen.main.scale
         
@@ -91,10 +50,15 @@ class ImageView: UIView {
             return
         }
         
+        if image.size.width <= width, image.size.height <= height {
+            layer.contents = image.cgImage
+            return
+        }
+        
         let rect = CGRect(x: 0, y: 0, width: width, height: height)
         
-        DispatchQueue.global(qos: .userInteractive).async {
-            
+        taskQueue.async {
+
             let context = CGContext(data: nil, width: Int(width), height: Int(height),
                                     bitsPerComponent: 8, bytesPerRow: Int(width)*4, space: CGColorSpaceCreateDeviceRGB(),
                                     bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
@@ -104,8 +68,7 @@ class ImageView: UIView {
             let decodedImage = context.makeImage()!
             
             DispatchQueue.main.async {
-                let finish = finishHandler()
-                guard finish else { return }
+                guard self.currentTask == task else { return }
                 self.layer.contents = decodedImage
             }
         }

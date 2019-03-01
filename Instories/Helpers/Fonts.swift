@@ -12,8 +12,6 @@ enum Fonts {
     
     static let billabong = "Billabong"
     
-    static let circeRegular = "Circe-Regular"
-    
     static let circeBold = "Circe-Bold"
     
     static var topBar: UIFont {

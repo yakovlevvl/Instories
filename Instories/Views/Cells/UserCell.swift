@@ -71,10 +71,8 @@ final class UserCell: UICollectionViewCell {
         usernameLabel.text = username
     }
     
-    func setAvatar(_ image: UIImage?, finishHandler: @escaping () -> (Bool)) {
-        avatarView.drawImage(image) {
-            finishHandler()
-        }
+    func setAvatar(_ image: UIImage?) {
+        avatarView.image = image
     }
     
     override var isHighlighted: Bool {

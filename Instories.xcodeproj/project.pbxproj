@@ -16,7 +16,6 @@
 		F569534021E1847200BD49D7 /* RoundTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F569533F21E1847200BD49D7 /* RoundTextField.swift */; };
 		F569534221E1875300BD49D7 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = F569534121E1875300BD49D7 /* Device.swift */; };
 		F569534421E1876E00BD49D7 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F569534321E1876D00BD49D7 /* Helper.swift */; };
-		F569534621E1877600BD49D7 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F569534521E1877600BD49D7 /* ImageView.swift */; };
 		F569534821E187BC00BD49D7 /* UIProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F569534721E187BC00BD49D7 /* UIProperties.swift */; };
 		F569534A21E187F800BD49D7 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F569534921E187F800BD49D7 /* Fonts.swift */; };
 		F569534D21E18EE900BD49D7 /* SearchUsersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F569534C21E18EE900BD49D7 /* SearchUsersVC.swift */; };
@@ -45,6 +44,7 @@
 		F569538521E3DCEE00BD49D7 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F569538421E3DCEE00BD49D7 /* RoundButton.swift */; };
 		F569538821E3E21200BD49D7 /* StoryTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F569538721E3E21200BD49D7 /* StoryTransitionAnimator.swift */; };
 		F569538A21E3E21900BD49D7 /* StoryTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F569538921E3E21900BD49D7 /* StoryTransitionManager.swift */; };
+		F5A570B12229C28C00F73055 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A570B02229C28C00F73055 /* ImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,7 +59,6 @@
 		F569533F21E1847200BD49D7 /* RoundTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundTextField.swift; sourceTree = "<group>"; };
 		F569534121E1875300BD49D7 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		F569534321E1876D00BD49D7 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
-		F569534521E1877600BD49D7 /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		F569534721E187BC00BD49D7 /* UIProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIProperties.swift; sourceTree = "<group>"; };
 		F569534921E187F800BD49D7 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		F569534C21E18EE900BD49D7 /* SearchUsersVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUsersVC.swift; sourceTree = "<group>"; };
@@ -88,6 +87,7 @@
 		F569538421E3DCEE00BD49D7 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		F569538721E3E21200BD49D7 /* StoryTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTransitionAnimator.swift; sourceTree = "<group>"; };
 		F569538921E3E21900BD49D7 /* StoryTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTransitionManager.swift; sourceTree = "<group>"; };
+		F5A570B02229C28C00F73055 /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +142,7 @@
 				F569534921E187F800BD49D7 /* Fonts.swift */,
 				F569534121E1875300BD49D7 /* Device.swift */,
 				F569534321E1876D00BD49D7 /* Helper.swift */,
-				F569534521E1877600BD49D7 /* ImageView.swift */,
+				F5A570B02229C28C00F73055 /* ImageView.swift */,
 				F569534721E187BC00BD49D7 /* UIProperties.swift */,
 				F569537821E2AB4000BD49D7 /* UserDefaultsKeys.swift */,
 			);
@@ -179,10 +179,10 @@
 			children = (
 				F569535D21E1911A00BD49D7 /* Cells */,
 				F569533D21E1840A00BD49D7 /* ClearTopBar.swift */,
-				F569534E21E18F3E00BD49D7 /* AlertView.swift */,
 				F569533F21E1847200BD49D7 /* RoundTextField.swift */,
 				F569535421E18FCF00BD49D7 /* SearchBar.swift */,
 				F569538421E3DCEE00BD49D7 /* RoundButton.swift */,
+				F569534E21E18F3E00BD49D7 /* AlertView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -327,6 +327,7 @@
 				F569538521E3DCEE00BD49D7 /* RoundButton.swift in Sources */,
 				F569537F21E2C46C00BD49D7 /* SettingCell.swift in Sources */,
 				F569535521E18FCF00BD49D7 /* SearchBar.swift in Sources */,
+				F5A570B12229C28C00F73055 /* ImageView.swift in Sources */,
 				F569536B21E2A5D600BD49D7 /* NavigationInteractor.swift in Sources */,
 				F569536D21E2A69600BD49D7 /* SettingsVC.swift in Sources */,
 				F569535A21E190CB00BD49D7 /* User.swift in Sources */,
@@ -334,7 +335,6 @@
 				F569534D21E18EE900BD49D7 /* SearchUsersVC.swift in Sources */,
 				F569534221E1875300BD49D7 /* Device.swift in Sources */,
 				F569535F21E1921900BD49D7 /* UserService.swift in Sources */,
-				F569534621E1877600BD49D7 /* ImageView.swift in Sources */,
 				F569534A21E187F800BD49D7 /* Fonts.swift in Sources */,
 				F569536721E2A5C900BD49D7 /* NavigationTransitionManager.swift in Sources */,
 				F569534421E1876E00BD49D7 /* Helper.swift in Sources */,

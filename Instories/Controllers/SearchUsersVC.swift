@@ -139,17 +139,13 @@ extension SearchUsersVC: UICollectionViewDataSource {
         let user = users[indexPath.item]
         cell.setUsername(user.username)
         if let avatarImage = user.avatarImage {
-            cell.setAvatar(avatarImage) {
-                cell.tag == tag
-            }
+            cell.setAvatar(avatarImage)
         } else {
             URLSession.getImage(url: user.avatarUrl) { image in
                 if let image = image {
                     user.avatarImage = image
                     if cell.tag == tag {
-                        cell.setAvatar(image) {
-                            cell.tag == tag
-                        }
+                        cell.setAvatar(image)
                     }
                 }
             }

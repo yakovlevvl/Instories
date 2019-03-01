@@ -146,17 +146,13 @@ extension StoriesVC: UICollectionViewDataSource {
         let story = stories[indexPath.item]
         
         if let image = story.image {
-            cell.setImage(image) {
-                cell.tag == tag
-            }
+            cell.setImage(image)
         } else {
             URLSession.getImage(url: story.imageUrl) { image in
                 if let image = image {
                     story.image = image
                     if cell.tag == tag {
-                        cell.setImage(image) {
-                            cell.tag == tag
-                        }
+                        cell.setImage(image)
                     }
                 }
             }

@@ -41,10 +41,8 @@ final class StoryCell: UICollectionViewCell {
         makeCard(with: 10, shadowOpacity: 0.12, shadowRadius: 15, shadowColor: .gray)
     }
     
-    func setImage(_ image: UIImage, finishHandler: @escaping () -> (Bool)) {
-        imageView.drawImage(image) {
-            finishHandler()
-        }
+    func setImage(_ image: UIImage) {
+        imageView.image = image
     }
     
     override func prepareForReuse() {
