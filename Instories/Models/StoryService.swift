@@ -48,7 +48,7 @@ final class StoryService {
                 var videoUrl: URL?
                 
                 if let videoUrlStr = storyJson["video"] as? String {
-                    videoUrl = videoUrlStr.url
+                    videoUrl = URL(string: videoUrlStr)
                 }
                 
                 let story = Story(imageUrl: imageUrl, timestamp: timestamp, videoUrl: videoUrl)

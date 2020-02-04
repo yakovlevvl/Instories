@@ -175,6 +175,7 @@ extension StoriesVC: UICollectionViewDelegateFlowLayout {
         let story = stories[indexPath.item]
         let storyVC = StoryVC()
         storyVC.story = story
+        storyVC.modalPresentationStyle = .fullScreen
         storyVC.transitioningDelegate = storyTransitionManager
         present(storyVC, animated: true)
     }
