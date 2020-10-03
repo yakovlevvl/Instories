@@ -7,9 +7,9 @@ iOS app for viewing Instagram stories anonymously
 </p>
 <br />
 
-<a href="url"><img src="https://github.com/yakovlevvl/Instories/blob/master/Content/iPhoneX1.png" height="626" width="288" ></a>
-<a href="url"><img src="https://github.com/yakovlevvl/Instories/blob/master/Content/iPhoneX2.png" height="626" width="288" ></a>
-<a href="url"><img src="https://github.com/yakovlevvl/Instories/blob/master/Content/iPhoneX3.png" height="626" width="288" ></a>
+<a href="url"><img src="https://github.com/yakovlevvl/Instories/blob/master/Content/iPhoneX1.png" height="595" width="274" ></a>
+<a href="url"><img src="https://github.com/yakovlevvl/Instories/blob/master/Content/iPhoneX2.png" height="595" width="274" ></a>
+<a href="url"><img src="https://github.com/yakovlevvl/Instories/blob/master/Content/iPhoneX3.png" height="595" width="274" ></a>
 <br />
 <br />
 
